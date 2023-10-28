@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Mi primera App de React-JSX🌐</title>
+	</head>
+	<body>
+		<div id="root">
+			<!-- Aquí se renderizará la aplicación de React -->
+		</div>
+
+		<!-- Cargamos la aplicación de React -->
+		<script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+		<script type="text/babel">
+			const root = ReactDOM.createRoot(document.getElementById("root"))
+			const items = []
+
+			const addItem = () => {
+				const text = document.getElementById("input").value
+				items.push({
+					completed: false,
+					text: text,
+				})
+				render()
+			}
+
+			const changeStatus = (item) => {
+				item.completed = !item.completed
+				render()
+			}
+
+			const deleteItem = (item) => {
+				const index = items.indexOf(item)
+				items.splice(index, 1)
+				render()
+			}
+
+			const render = () => {
+				const h1 = React.createElement(
+					"h1",
+					{
+						id: "title",
+						className: "x-1",
+						style: {
+							color: "red",
+							backgroundColor: "blue",
+							borderRadius: "5px",
+						},
+					},
+					"Mi primera aplicación React"
+				)
+
+				const form = React.createElement("div", null, [
+					React.createElement(
+						"input",
+						{
+							id: "input",
+							type: "text",
+							placeholder: "Nueva tarea",
+							key: "input",
+						},
+						null
+					),
+					React.createElement(
+						"button",
+						{ id: "button", onClick: addItem, key: "button" },
+						"Agregar"
+					),
+				])
+
+				const list = React.createElement(
+					"ul",
+					null,
+					items.map((item) => {
+						return React.createElement("li", { key: item.text }, [
+							React.createElement(
+								"input",
+								{
+									type: "checkbox",
+									key: "checkbox",
+									checked: item.completed,
+									onChange: () => {
+										changeStatus(item)
+									},
+								},
+								null
+							),
+							React.createElement(
+								"span",
+								{
+									key: "text",
+									style: {
+										textDecoration: item.completed ? "line-through" : "none",
+									},
+								},
+								item.text
+							),
+							React.createElement(
+								"button",
+								{
+									key: "button-delete",
+									onClick: () => {
+										deleteItem(item)
+									},
+								},
+								"Eliminar"
+							),
+						])
+					})
+				)
+
+				root.render([h1, form, list])
+			}
+
+			render()
+		</script>
+	</body>
+</html>
