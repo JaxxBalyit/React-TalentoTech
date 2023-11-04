@@ -3,11 +3,11 @@
 let text = "hola"
 
 if(true){
-    let text = "Mundo"
-    console.log(text)
+	let text = "Mundo"
+	console.log(text)
 }
 
-console.log(text) 
+console.log(text)
 */
 
 // Ejercicio 2: Ciclos
@@ -20,8 +20,8 @@ for (let i = 0; i < 5: i++) {
 	div.style.width = "100px"
 	div.style.margin = "10px"
 	div.style.backgroundColor = "green"
-    
-    container.appendChild(div)
+
+	container.appendChild(div)
 	div.addEventListener("click", () => {
 		alert("Soy el div #: " + i)
 	})
@@ -53,7 +53,7 @@ holaMundo("Emmanuel")
 */
 
 // Ejercicio 6: Funciones flecha con contexto y desestructuración
-/* 
+/*
 const tahoe = {
 	name: "Tahoe",
 	getFormatedTitle: function () {
@@ -65,7 +65,7 @@ const tahoe = {
 			alert(this.name.toUpperCase())
 		}, 3000)
 	},
-} 
+}
 // Desestructuración de objetos
 const { name, getFormatedTitle } = tahoe
 tahoe.getFormatedTitle()
@@ -73,7 +73,7 @@ getFormatedTitle()
 */
 
 // Ejercicio 7: Desestructuración anidada
-/* 
+/*
 const person = {
 	name: "Emmanuel",
 	age: 22,
@@ -94,7 +94,7 @@ const printAddress = ({ address: { street, number, city } }) => {
 */
 
 // Ejercicio 8: Operador de propagación (spread operator)
-/* 
+/*
 const arr1 = [1, 2, 3]
 const arr2 = [4, 5, 6]
 
@@ -124,7 +124,7 @@ console.log(completeData2)
 */
 
 // Ejercicio 9: Promesas y fetch
-/* 
+/*
 let errorMessage = "Ocurrió un error al traer la frase"
 fetch("https://quote-garden.onrender.com/api/v3/quotes/random")
 	.then((response) => {
@@ -147,7 +147,7 @@ fetch("https://quote-garden.onrender.com/api/v3/quotes/random")
 */
 
 // Ejercicio 10: Async/Await
-/* 
+/*
 let errorMessage = "Ocurrió un error al traer la información."
 const getQuote = async () => {
 	try {
@@ -171,7 +171,7 @@ getQuote()
 */
 
 // Ejercicio 11: Filter
-/* 
+/*
 const names = ["José", "Christian", "Eduardo", "Jaime", "Uriel", "Alejandro"]
 const namesWithJ = names.filter((name) => {
 	console.log(name, name.toUpperCase().includes("J"))
@@ -211,7 +211,7 @@ console.log(index)
 */
 
 // Ejercicio 12: Map
-/* 
+/*
 const users = [
 	{
 		name: "José",
@@ -249,7 +249,7 @@ container.append(...elements)
 */
 
 // Ejercicio 13: Reduce
-/* 
+/*
 const names = ["José", "Christian", "Eduardo", "Jaime", "Uriel", "Alejandro"]
 const allNames = names.reduce((prev, current) => {
 	if (current === "Uriel") {
