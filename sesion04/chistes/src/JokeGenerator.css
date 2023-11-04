@@ -1,0 +1,41 @@
+body {
+    background-color: rgb(140, 176, 228);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.JokeApp {
+    width: 400px;
+    min-height: 250px;
+    background-color: rgb(43, 150, 203);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.JokeApp h1 {
+    border-bottom: 1px solid black;
+    text-align: center;
+    color: black;
+}
+
+.JokeApp button {
+    width: 100%;
+    padding: 5px;
+    background-color: rgb(140, 176, 228);
+    color: white;
+    cursor: pointer;
+}
+
+.JokeApp button:hover {
+    background-color: blue;
+}
+
+.JokeApp p {
+    margin: 0;
+    padding: 5px;
+    font-size: 1.2em;
+    text-align: center;
+    color: black;
+}
