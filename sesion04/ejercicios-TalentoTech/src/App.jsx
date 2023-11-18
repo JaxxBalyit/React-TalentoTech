@@ -2,6 +2,10 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import HolaMundo from './components/HelloWorld'
 import { useState } from 'react'
 import Timer from './components/Timer'
+import FocusInput from './components/FocusInput'
+import ControlledComponent from './components/ControlledComponent'
+import CounterWithHook from './components/CounterWithHook'
+import TimerConsumer from './components/TimerConsumer'
 
 function App() {
 	const [routes, setRoutes] = useState([
@@ -14,6 +18,26 @@ function App() {
 			path: '/timer',
 			name: 'Timer',
 			component: <Timer />,
+		},
+		{
+			path: '/focus',
+			name: 'Focus',
+			component: <FocusInput />,
+		},
+		{
+			path: '/controlled',
+			name: 'Controlled Component',
+			component: <ControlledComponent />,
+		},
+		{
+			path: '/custom-hook',
+			name: 'Custom Hook',
+			component: <CounterWithHook initialState={4} />,
+		},
+		{
+			path: '/timer-context',
+			name: 'Timer with Context',
+			component: <TimerConsumer />,
 		},
 	])
 
