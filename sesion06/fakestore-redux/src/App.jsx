@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
 import Cart from './pages/Cart'
-import { CartProvider } from './context/CartContext'
 
 function App() {
 	return (
-		<CartProvider>
+		<Provider store={store}>
 			<BrowserRouter>
 				<main className='min-h-screen min-w-screen bg-gray-100 flex flex-col'>
 					<Navbar />
@@ -26,7 +27,7 @@ function App() {
 					</div>
 				</main>
 			</BrowserRouter>
-		</CartProvider>
+		</Provider>
 	)
 }
 

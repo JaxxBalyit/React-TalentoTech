@@ -6,11 +6,16 @@ const Navbar = () => {
 			<div className='container flex justify-between items-center text-white px-4'>
 				<Link
 					to='/'
-					className='text-xl'
+					className='text-xl text-white'
 				>
 					FakeStore
 				</Link>
-				<Link to='/cart'>Carrito</Link>
+				<Link
+					to='/cart'
+					className='text-white'
+				>
+					Carrito
+				</Link>
 			</div>
 		</nav>
 	)
