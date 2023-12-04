@@ -1,42 +1,51 @@
-import { useDispatch } from 'react-redux'
+/* eslint-disable react/prop-types */
+import { Link, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, removeFromCart } from '../redux/cartSlice'
-import { useLocation } from 'react-router-dom'
 
 const ProductItem = ({ product }) => {
-	const location = useLocation()
-
 	const dispatch = useDispatch()
+	const location = useLocation().pathname
+	const cart = useSelector((state) => state.cart)
+
+	const isInCart = cart.some((item) => item.id === product.id)
 
 	const handleAddToCart = () => {
-		dispatch(addToCart)
-		alert('Producto agregado al carrito')
+		dispatch(addToCart(product))
+		alert('Producto añadido al carrito')
 	}
 
 	const handleRemoveFromCart = () => {
-		dispatch(removeFromCart)
-		alert('Producto removido del carrito')
+		dispatch(removeFromCart(product.id))
+		alert('Producto eliminado del carrito')
 	}
 
 	return (
-		<li className='flex flex-col gap-2 p-4 items-center bg-white rounded-xl shadow'>
+		<li className='flex flex-col gap-2 p-4 items-center bg-white rounded-xl shadow text-black'>
 			<img
 				src={product.image}
 				className='w-20'
+				alt={product.title}
 			/>
-			<span className='text-center font-bold text-black'>{product.title}</span>
+			<Link to={`/product/${product.id}`}>
+				<span className='text-center font-bold text-black'>{product.title}</span>
+			</Link>
 			<span className='text-center font-bold text-sm text-black'>${product.price}</span>
-			<button
-				className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-				onClick={handleAddToCart}
-			>
-				Añadir al carrito{' '}
-			</button>
-			<button
-				className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
-				onClick={handleRemoveFromCart}
-			>
-				Remover del carrito
-			</button>
+			{location !== '/cart' ? (
+				<button
+					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+					onClick={handleAddToCart}
+				>
+					Añadir al carrito{' '}
+				</button>
+			) : isInCart ? (
+				<button
+					className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
+					onClick={handleRemoveFromCart}
+				>
+					Eliminar del carrito{' '}
+				</button>
+			) : null}
 		</li>
 	)
 }

@@ -2,15 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
 	apiKey: 'AIzaSyCzFZBduG5zdfDcC33gpJfAKqmSMeOj7eE',
 	authDomain: 'e-commerce-fakestore.firebaseapp.com',
@@ -21,9 +17,11 @@ const firebaseConfig = {
 	measurementId: 'G-NXN7SB4N3X',
 }
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig)
 const analytics = getAnalytics(app)
+
+export const auth = getAuth(app)
+export const db = getFirestore(app)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>

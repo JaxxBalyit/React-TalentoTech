@@ -1,29 +1,45 @@
-import axios from "axios";
-import { useState } from "react";
-import { useReducer } from "react";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+} from "firebase/firestore"
+import { useState } from "react"
+import { db } from "../main"
 
 export const useFakestoreApi = () => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const fetchData = async (url, action) => {
-    const result = await axios.get(url);
-    return result.data;
-  };
+  const [data, setData] = useState(null)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const getProducts = async () => {
     try {
-      setLoading(true);
-      const url = "https://fakestoreapi.com/products";
-      const result = await fetchData(url, "GET_PRODUCTS");
-      setData(result);
-    } catch (error) {
-      setError("Error al cargar productos");
-    } finally {
-      setLoading(false);
-    }
-  };
+      const res = await query(collection(db, "products"))
 
-  return { data, error, loading, getProducts };
-};
+      return onSnapshot(res, (querySnapshot) => {
+        setData(
+          querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        )
+      })
+    } catch (error) {
+      setError("Error al cargar productos")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const storeNewProduct = async (product) => {
+    try {
+      setLoading(true)
+      const res = await addDoc(collection(db, "products"), product)
+      return res
+    } catch (error) {
+      setError("Error al guardar producto")
+      throw error
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return { data, error, loading, getProducts, storeNewProduct }
+}
