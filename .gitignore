@@ -1,5 +1,6 @@
 # Ignores VSCode Forwarding Port
 .vscode
 
-# Ignores all text files
+# Ignores all text files and PDF files
 *.txt
+*.pdf
